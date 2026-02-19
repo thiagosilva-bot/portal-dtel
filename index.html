@@ -618,7 +618,7 @@ body { font-family:'Barlow',sans-serif; background:var(--bg); color:var(--text);
 //  CONFIGURAÇÃO JSONBIN
 //  Substitua pelos seus dados após criar a conta
 // ═══════════════════════════════════════════════════
-const JSONBIN_API_KEY = '$2a$10$yowFWHjWiqvlVFBc1YMmgunrP6rdcXeCiTBY3eFhVjds8H2inj/62';
+const JSONBIN_API_KEY = '$2a$10$8i8kr/4ptfuedErNbtdChuukzY/LFn07k1PyqFpa5ZibZlv8siaWq';
 const JSONBIN_BIN_ID  = '69976c75d0ea881f40c7c14b';
 const JSONBIN_URL     = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
 
@@ -689,14 +689,13 @@ async function dbWrite() {
 async function init() {
   setLoadingMsg('Conectando ao servidor...');
 
-  // Verificar se as credenciais foram configuradas
-  if (JSONBIN_API_KEY === '$2a$10$yowFWHjWiqvlVFBc1YMmgunrP6rdcXeCiTBY3eFhVjds8H2inj/62' || JSONBIN_BIN_ID === '69976c75d0ea881f40c7c14b') {
+  // Verificar se as credenciais foram configuradas (placeholders não substituídos)
+  if (JSONBIN_API_KEY === 'SEU_API_KEY_AQUI' || JSONBIN_BIN_ID === 'SEU_BIN_ID_AQUI') {
     setLoadingMsg('⚠️ Configure o JSONBin nas variáveis do código');
     setTimeout(() => {
       document.getElementById('loadingScreen').style.display = 'none';
       document.getElementById('loginPage').style.display = 'flex';
       showToast('Atenção: configure o JSONBin para sincronizar entre dispositivos.', 'error');
-      // Modo offline — usar localStorage como fallback
       loadOfflineFallback();
     }, 2000);
     return;
@@ -729,7 +728,7 @@ async function dbWriteWithFallback() {
   // Salvar localmente sempre
   localStorage.setItem('dtel_db', JSON.stringify(DB));
   // Tentar salvar online
-  if (JSONBIN_API_KEY !== '$2a$10$yowFWHjWiqvlVFBc1YMmgunrP6rdcXeCiTBY3eFhVjds8H2inj/62') {
+  if (JSONBIN_API_KEY !== 'SEU_API_KEY_AQUI') {
     await dbWrite();
   }
 }
@@ -774,10 +773,8 @@ async function doLogin() {
   btn.disabled = true;
   btn.textContent = 'Verificando...';
 
-  // Re-carregar dados antes de verificar (garantia de usuários atualizados)
-  if (JSONBIN_API_KEY !== '$2a$10$yowFWHjWiqvlVFBc1YMmgunrP6rdcXeCiTBY3eFhVjds8H2inj/62') {
-    await dbRead();
-  }
+  // Sempre recarregar do JSONBin antes de verificar
+  await dbRead();
 
   const user = DB.users[u];
   if (user && user.pass === p) {
