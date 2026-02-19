@@ -619,7 +619,7 @@ body { font-family:'Barlow',sans-serif; background:var(--bg); color:var(--text);
 //  Substitua pelos seus dados após criar a conta
 // ═══════════════════════════════════════════════════
 const JSONBIN_API_KEY = '$2a$10$yowFWHjWiqvlVFBc1YMmgunrP6rdcXeCiTBY3eFhVjds8H2inj/62';
-const JSONBIN_BIN_ID  = '6997555dd0ea881f40c79398';
+const JSONBIN_BIN_ID  = '69976c75d0ea881f40c7c14b';
 const JSONBIN_URL     = `https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`;
 
 // ═══════════════════════════════════════════════════
@@ -690,7 +690,7 @@ async function init() {
   setLoadingMsg('Conectando ao servidor...');
 
   // Verificar se as credenciais foram configuradas
-  if (JSONBIN_API_KEY === '$2a$10$yowFWHjWiqvlVFBc1YMmgunrP6rdcXeCiTBY3eFhVjds8H2inj/62' || JSONBIN_BIN_ID === '6997555dd0ea881f40c79398') {
+  if (JSONBIN_API_KEY === '$2a$10$yowFWHjWiqvlVFBc1YMmgunrP6rdcXeCiTBY3eFhVjds8H2inj/62' || JSONBIN_BIN_ID === '69976c75d0ea881f40c7c14b') {
     setLoadingMsg('⚠️ Configure o JSONBin nas variáveis do código');
     setTimeout(() => {
       document.getElementById('loadingScreen').style.display = 'none';
